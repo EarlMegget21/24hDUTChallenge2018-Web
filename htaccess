@@ -1,0 +1,24 @@
+#dans le httpd.conf il y a un allow from all qui ouvre le serveur apache à l'exterieur, attention
+
+Options -Indexes #bloque le listage des répertoires via navigateur
+DirectoryIndex /Web/index.php #définit une page par défault
+
+<Files ~ "\.(js|css|gif|jpg|jpeg|png|ico)$"> #bloque l'accès aux fichiers ayant cette extension (TODO: peut être deny tout et autoriser uniquement index.php)
+	Order Deny,Allow
+	Deny from all
+</Files>
+ErrorDocument 403 /Error #définit les pages à appeler en cas d'erreur (403 redirigé vers 404 pour tromper le hacker)
+ErrorDocument 404 /Error
+
+#Order deny,allow
+#Deny from all 
+# interdit à tout le monde sauf
+# TODO: autoriser seulement aux IP de l'équipe durant le concours
+#Allow from 123.45.6.7
+#Allow from 13.37
+# Toutes les adresses IP commençant par 13.37
+
+RewriteEngine On
+RewriteRule    ^(Accueil|Error|Propos|Faq)/?$    Web/index.php?page=main&action=$1    [NC,L]
+RewriteRule    ^(Create|Connect|ReadAll|Read|Update)/?$    Web/index.php?page=user&action=$1    [NC,L]
+RewriteRule    ^(Read|Update|Delete)/([A-Za-z0-9_-]+)/?$    Web/index.php?page=user&action=$1&login=$2    [NC,L]
