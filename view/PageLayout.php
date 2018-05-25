@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <link rel="icon" type="image/x-icon" href="/Web/img/logo.png" />
         <title><?php echo $pagetitle; ?></title>
-
+        <link rel="stylesheet" type="text/css" href="css/material-components-web.min.css">
         <link rel="stylesheet" type="text/css" href="/Web/css/styles.css">
     </head>
     <body>
@@ -34,6 +34,10 @@
             <?php echo "'".ucfirst($action)."'" ?>);
         </script>
 
+        <script type="text/javascript" src="js/material-components-web.min.js"></script>
+        <script type="text/javascript">
+            window.mdc.autoInit();
+        </script>
     </body>
 </html>
 
