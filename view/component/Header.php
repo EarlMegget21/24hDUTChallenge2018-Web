@@ -43,12 +43,17 @@ if (isset($_SESSION['login'])) {
                 </header>
                 <nav class="mdc-drawer__content mdc-list-group">
                     <div id="icon-with-text-demo" class="mdc-list">
-                        <a class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1"
+                        <a id="accueilMenu" class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1"
+                           data-mdc-tabindex-handled="true">
+                            <i class="material-icons mdc-list-item__graphic"  aria-hidden="true">home</i>
+                            Accueil
+                        </a>
+                        <a id="eventPublic" class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1"
                                 data-mdc-tabindex-handled="true">
                             <i class="material-icons mdc-list-item__graphic"  aria-hidden="true">event</i>
                             Evenements publiques
                         </a>
-                        <a class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1"
+                        <a id="createEvent"class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1"
                                 data-mdc-tabindex-handled="true">
                             <i class="material-icons mdc-list-item__graphic" aria-hidden="true">add</i>
                             Créer un evenement
@@ -58,7 +63,7 @@ if (isset($_SESSION['login'])) {
                     <div class="mdc-list">
                         <?php
                         if (Session::is_admin()) {
-                            echo '<a class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1"
+                            echo '<a id="users" class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1"
                                 data-mdc-tabindex-handled="true">
                             <i class="material-icons mdc-list-item__graphic"
                                aria-hidden="true">person</i>
@@ -66,21 +71,21 @@ if (isset($_SESSION['login'])) {
                         </a> ';
                         }
                         if (isset($_SESSION['login'])) {
-                            echo '<a class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1"
+                            echo '<a id="profil" class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1"
                                 data-mdc-tabindex-handled="true">
                             <i class="material-icons mdc-list-item__graphic"
                                aria-hidden="true">account_circle
-</i>
+                            </i>
                             Mon profil
                         </a> ';
-                            echo '<a class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1"
+                            echo '<a id="logout" class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1"
                                 data-mdc-tabindex-handled="true">
                             <i class="material-icons mdc-list-item__graphic"
                                aria-hidden="true">power_off</i>
                             Deconnexion
                         </a>';
                         } else {
-                            echo '<a class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1"
+                            echo '<a id="login" class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1"
                                 data-mdc-tabindex-handled="true">
                             <!--<i class="material-icons mdc-list-item__graphic"
                                aria-hidden="true">report</i>-->
