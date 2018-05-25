@@ -1,14 +1,14 @@
 <?php
-require_once File::build_path(array('model','ModelUser.php')); // chargement du modèle
+require_once File::build_path(array('model','ModelEvent.php')); // chargement du modèle
 require_once File::build_path(array('lib','Security.php'));
 require_once File::build_path(array('controller','ControllerMain.php'));
 
-class ControllerUser { //TODO: tester chaque variable POST, GET et SESSION avant de l'utiliser et renvoyer vers la page d'erreur si absent
+class ControllerEvent { //TODO: tester chaque variable POST, GET et SESSION avant de l'utiliser et renvoyer vers la page d'erreur si absent
 
-    protected static $object = 'user';
+    protected static $object = 'event';
 
     public static function readAll(){
-        if(Session::is_admin()){
+        if(Session::is_user()){
             $tab_v = ModelUser::selectAll();     //appel au modèle pour gerer la BD
             //"redirige" vers la vue (pas require_once car on peut appeler plusieur fois dans le code pour 'copier' le html à la manière d'un include en C
             $pagetitle = 'List';
@@ -17,7 +17,7 @@ class ControllerUser { //TODO: tester chaque variable POST, GET et SESSION avant
             ControllerMain::error();
         }
     }
-    
+
     public static function read() {
         if(isset($_GET['login']) && (Session::is_user($_GET['login'])||Session::is_admin())){
             $login=$_GET['login'];
@@ -157,17 +157,17 @@ class ControllerUser { //TODO: tester chaque variable POST, GET et SESSION avant
         session_destroy();
         ControllerMain::accueil();
     }
-    
+
     public static function validate(){
         if(isset($_GET['login'])){
-			$login=$_GET['login'];
+            $login=$_GET['login'];
             $tv = ModelUser::select(array('login'=>$login));
             if(isset($_GET['nonce']) && $tv[0]->get("nonce")==$_GET["nonce"]){
                 ModelUser::validate($login);
             }
             ControllerMain::accueil();
         }else{
-			ControllerMain::error();
-		}
+            ControllerMain::error();
+        }
     }
 }
