@@ -17,3 +17,32 @@ body {
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
 }
+
+.carte {
+    width:90%;
+    max-width:500px;
+    margin:auto;
+    margin-top:15px;
+}
+
+.card-h2 {
+    margin: 0;
+}
+
+.card-padding {
+    padding: 1rem;
+}
+
+.card-texte {
+    text-align: justify;
+    padding-top: 0;
+    padding-bottom: 8;
+    color: rgba(0, 0, 0, 0.54);
+    font-family: "Roboto";
+}
+
+#img-accueil {
+    background-image: url("../img/soiree.jpg");
+    -webkit-background-size: cover;
+    background-size: cover;
+}

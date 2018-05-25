@@ -22,67 +22,76 @@ function changePage(queries, title){
 }
 
 function connected(login, admin){
-    html="<div><p>Bienvenue "+login+"</p></div><div>"
+    let html="";
     if(admin){
-        html+='<a id="users" href="#">Users</a>'
+        html+='<a id="users" class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1" data-mdc-tabindex-handled="true"> <i class="material-icons mdc-list-item__graphic" aria-hidden="true">person</i> Utilisateurs </a>'
     }
+    html+='<a id="profil" class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1" data-mdc-tabindex-handled="true"> <i class="material-icons mdc-list-item__graphic" aria-hidden="true">account_circle</i>Mon profil</a>';
+    html+='<a id="logout" class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1" data-mdc-tabindex-handled="true"> <i class="material-icons mdc-list-item__graphic" aria-hidden="true">power_off</i>Deconnexion</a>';
     $('#connexion').html(
         html+
         '<a id="profil" href="#">Mon Profil</a>'+
         '<a id="logout" href="#">Deconnexion</a>'+
         '</div>'
-    )
+    );
     $('#logout').on('click', function (e) {
         changePage({'controller':'user', 'action':'deconnect'}, "Accueil")
         deconnected()
-    })
-    $('#users').on('click', function (e) {
-        changePage({'controller':'user', 'action':'readAll'}, "ReadAll")
-    })
+    });
+    if(admin) {
+        $('#users').on('click', function (e) {
+            changePage({'controller':'user', 'action':'readAll'}, "ReadAll")
+        });
+    }
     $('#profil').on('click', function (e) {
         changePage({'controller':'user', 'action':'read', 'login':currentLogin}, "Read")
     })
 }
 
 function deconnected(){
-    $('#connexion').html(
-        '<div></div><div>'+
-        '<a id="login" href="#">Connexion</a>'+
-        '<a id="signup" href="#">S\'inscrire</a>'+
-        '</div>'
-    )
+    $('#connexion').html('<a id="login" class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1" data-mdc-tabindex-handled="true"> Connexion/Inscription </a>')
+
     $('#login').on('click', function (e) {
         changePage({'controller':'user', 'action':'connect'}, "Connect")
-    })
-    $('#signup').on('click', function (e) {
-        changePage({'controller':'user', 'action':'create'}, "Create")
     })
 }
 
 $(function () {
     $('#users').on('click', function (e) {
         changePage({'controller':'user', 'action':'readAll'}, "ReadAll")
+        drawer.open=false;
     })
     $('#profil').on('click', function (e) {
         changePage({'controller':'user', 'action':'read', 'login':currentLogin}, "Read")
+        drawer.open=false;
     })
     $('#logout').on('click', function (e) {
         changePage({'controller':'user', 'action':'deconnect'}, "Accueil")
+        drawer.open=false;
         deconnected()
     })
     $('#login').on('click', function (e) {
         changePage({'controller':'user', 'action':'connect'}, "Connect")
-    })
-    $('#signup').on('click', function (e) {
-        changePage({'controller':'user', 'action':'create'}, "Create")
+        drawer.open=false;
     })
     $('#accueilMenu').on('click', function (e) {
         changePage({'controller':'main', 'action':'accueil'}, "Accueil")
+        drawer.open=false;
     })
     $('#proposMenu').on('click', function (e) {
         changePage({'controller':'main', 'action':'propos'}, "Propos")
+        drawer.open=false;
     })
     $('#faqMenu').on('click', function (e) {
         changePage({'controller':'main', 'action':'faq'}, "Faq")
+        drawer.open=false;
+    })
+    $('#eventPublic').on('click', function (e) {
+        changePage({'controller':'event', 'action': 'readAll'}, "ListeEvenement")
+        drawer.open=false;
+    })
+    $('#createEvent').on('click', function (e) {
+        changePage({"controller": "event", "action": "create"}, "CreateEvenement")
+        drawer.open=false;
     })
 });
