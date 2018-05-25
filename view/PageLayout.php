@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <link rel="icon" type="image/x-icon" href="/Web/img/logo.png" />
         <title><?php echo $pagetitle; ?></title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
         <link rel="stylesheet" type="text/css" href="/Web/css/material-components-web.min.css">
         <link rel="stylesheet" type="text/css" href="/Web/css/styles.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"

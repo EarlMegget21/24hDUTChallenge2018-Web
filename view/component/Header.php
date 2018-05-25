@@ -43,26 +43,15 @@ if (isset($_SESSION['login'])) {
                 </header>
                 <nav class="mdc-drawer__content mdc-list-group">
                     <div id="icon-with-text-demo" class="mdc-list">
-                        <a class="mdc-list-item mdc-list-item--selected demo-drawer-list-item" tabindex="-1"
-                           data-mdc-tabindex="-1" data-mdc-tabindex-handled="true">
-                            <i class="material-icons mdc-list-item__graphic"
-                                    aria-hidden="true">inbox
-                            </i>
-                            Inbox
-                        </a>
-                        <a class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1" data-mdc-tabindex-handled="true">
-                            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">star</i>
-                            Star
+                        <a class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1"
+                                data-mdc-tabindex-handled="true">
+                            <i class="material-icons mdc-list-item__graphic"  aria-hidden="true">event</i>
+                            Evenements publiques
                         </a>
                         <a class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1"
                                 data-mdc-tabindex-handled="true">
-                            <i class="material-icons mdc-list-item__graphic"  aria-hidden="true">send</i>
-                            Sent Mail
-                        </a>
-                        <a class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1"
-                                data-mdc-tabindex-handled="true">
-                            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">drafts</i>
-                            Drafts
+                            <i class="material-icons mdc-list-item__graphic" aria-hidden="true">add</i>
+                            Créer un evenement
                         </a>
                     </div>
                     <hr class="mdc-list-divider">
@@ -86,8 +75,8 @@ if (isset($_SESSION['login'])) {
                         </a> ';
                             echo '<a class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1"
                                 data-mdc-tabindex-handled="true">
-                            <!--<i class="material-icons mdc-list-item__graphic"
-                               aria-hidden="true">report</i>-->
+                            <i class="material-icons mdc-list-item__graphic"
+                               aria-hidden="true">power_off</i>
                             Deconnexion
                         </a>';
                         } else {
