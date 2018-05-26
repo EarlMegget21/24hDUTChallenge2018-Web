@@ -72,11 +72,10 @@ class ModelEvent extends Model
             echo $e->getMessage(); // affiche un message d'erreur
             die(); //supprimer equilvalent à System.exit(1); en java
         }
-    }
-
-    public static function save($data)  #Va d'abord chercher l'id max dans la BD puis l'incrémente et en fait un hash
-    {
-
+        $newId = $lastId +  1;
+        $newData = $data;
+        $newData['id'] = $newId;
+        $newData['hash'] = Security::chiffrer($newId);
         return parent::save($newData);
     }
 
@@ -85,8 +84,6 @@ class ModelEvent extends Model
         $sql = "SELECT * FROM Event e";
         // Prepare the SQL statement
         $req_prep = Model::$pdo->prepare($sql);
-        // Execute the SQL prepared statement after replacing tags
-        $req_prep->execute($data); //on associe le tableau à la requete pour éviter l'injection
         // Retrieve results as previously
         $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelEvent');
         $tab = $req_prep->fetchAll();
