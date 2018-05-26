@@ -56,3 +56,19 @@ body {
     margin:15px;
 }
 
+.list {
+    display: flex;
+}
+
+.demo-card {
+    width:250px;
+    margin:15px;
+}
+
+.demo-card__primary {
+    padding:15px;
+}
+
+.demo-card__secondary {
+    padding:15px;
+}

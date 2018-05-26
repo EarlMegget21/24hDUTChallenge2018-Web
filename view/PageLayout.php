@@ -10,7 +10,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
               rel="stylesheet">
     </head>
-    <body>
+    <body class="mdc-typography">
 
         <header>
             <?php require File::build_path(array('view', 'component', 'Header.php')); ?>
