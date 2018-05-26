@@ -50,6 +50,7 @@
                 </span>
         </button>
         <p>Les champs marqués d'une * sont obligatoires</p>
+        <input type="hidden" name="loginCreateur" value='<?php if (!empty($_SESSION['login'])) echo htmlspecialchars($_SESSION['login']); ?>'/>
     </form>
 
     <div class="mdc-card carte">
@@ -97,6 +98,7 @@
     .form p {
         padding: 15px;
     }
+    
 
     button.mdc-fab.material-icons {
         margin: auto;
@@ -104,3 +106,4 @@
         margin-bottom: 15px;
     }
 </style>
+   

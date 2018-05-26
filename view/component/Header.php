@@ -3,7 +3,7 @@
         <aside class="mdc-drawer mdc-drawer--temporary" style="">
             <nav class="mdc-drawer__drawer">
                 <header class="mdc-drawer__header">
-                    <div class="mdc-drawer__header-content mdc-theme--on-primary mdc-theme--primary-bg">Header here
+                    <div class="mdc-drawer__header-content mdc-theme--on-primary mdc-theme--primary-bg">Reunionou
                     </div>
                 </header>
                 <nav class="mdc-drawer__content mdc-list-group">

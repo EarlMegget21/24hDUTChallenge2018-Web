@@ -104,14 +104,14 @@ $(function (e) {
         }
     })
     $('#updateButton').on('click', function (e) {
-        changePage({'controller':'user', 'action':'update', 'login':profilLogin}, "Update")
+        changePage({'controller':'user', 'action':'update', 'login':profilLogin}, "User/Update")
     })
     $('.listUsers').on('click', function f(e) {
         let action
         if(e.target.getAttribute('id').split('-')[0]=='delete'){
             action="Accueil"
         }else{
-            action="Read"
+            action="/User/Read"
         }
         changePage({'controller':'user', 'action':e.target.getAttribute('id').split('-')[0], 'login':e.target.getAttribute('id').split('-')[1]}, action)
         if(e.target.getAttribute('id').split('-')[0]=='delete' && e.target.getAttribute('id').split('-')[1]==currentLogin){
@@ -119,6 +119,6 @@ $(function (e) {
         }
     })
     $('#createUser').on('click', function (e) {
-        changePage({'controller':'user', 'action':'create'}, "Create")
+        changePage({'controller':'user', 'action':'create'}, "User/Create")
     })
 })
