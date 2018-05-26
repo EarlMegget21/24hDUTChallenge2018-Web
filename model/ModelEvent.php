@@ -42,25 +42,14 @@ class ModelEvent extends Model
         // Execute the SQL prepared statement after replacing tags
         $req_prep->execute($data); //on associe le tableau à la requete pour éviter l'injection
         // Retrieve results as previously
-        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelBiere');
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelEvent');
         $tab = $req_prep->fetchAll();
         return $tab;
     }
 
     public static function save($data)  #Va d'abord chercher l'id max dans la BD puis l'incrémente et en fait un hash
     {
-        try {
-            $sql = 'SELECT MAX(id) FROM Event';
-            $req_prep = Model::$pdo->prepare($sql);
-            $req_prep->execute($data);
-            $lastId = $req_prep->fetchColumn();
-        } catch (PDOException $e) {
-            echo $e->getMessage(); // affiche un message d'erreur
-        }
-        $newId = $lastId +  1;
-        $newData = $data;
-        $newData['id'] = $newId;
-        $newData['hash'] = Security::chiffrer($newId);
+
         return parent::save($newData);
     }
 }
