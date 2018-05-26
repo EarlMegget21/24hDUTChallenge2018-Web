@@ -60,7 +60,7 @@ if (isset($_SESSION['login'])) {
                         </a>
                     </div>
                     <hr class="mdc-list-divider">
-                    <div class="mdc-list">
+                    <div class="mdc-list" id="connexion">
                         <?php
                         if (Session::is_admin()) {
                             echo '<a id="users" class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1"
