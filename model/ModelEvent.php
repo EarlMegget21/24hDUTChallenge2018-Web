@@ -42,7 +42,7 @@ class ModelEvent extends Model
         // Execute the SQL prepared statement after replacing tags
         $req_prep->execute($data); //on associe le tableau à la requete pour éviter l'injection
         // Retrieve results as previously
-        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelBiere');
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelEvent');
         $tab = $req_prep->fetchAll();
         return $tab;
     }
@@ -62,6 +62,19 @@ class ModelEvent extends Model
         $newData['id'] = $newId;
         $newData['hash'] = Security::chiffrer($newId);
         return parent::save($newData);
+    }
+
+    public static function selectAll()
+    {
+        $sql = "SELECT * FROM Evenement e";
+        // Prepare the SQL statement
+        $req_prep = Model::$pdo->prepare($sql);
+        // Execute the SQL prepared statement after replacing tags
+        $req_prep->execute($data); //on associe le tableau à la requete pour éviter l'injection
+        // Retrieve results as previously
+        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelEvent');
+        $tab = $req_prep->fetchAll();
+        return $tab;
     }
 }
 
