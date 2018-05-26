@@ -62,6 +62,7 @@ class ControllerEvent { //TODO: tester chaque variable POST, GET et SESSION avan
         } else {
             $tv = ModelEvent::select(array('hash'=>$data['hash']));
             $v=$tv[0];
+            $new = true;
             $pagetitle='Evénement créé !';
             require File::build_path(array('view', 'event', 'Detail.php'));
         }
