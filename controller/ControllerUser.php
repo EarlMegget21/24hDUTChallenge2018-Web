@@ -50,7 +50,7 @@ class ControllerUser { //TODO: tester chaque variable POST, GET et SESSION avant
             $mdp= Security::getSeed().$_POST['mdp'];
             $data['mdp']= Security::chiffrer($mdp);
         }
-        sleep(3);
+        //sleep(3);
         if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
             $data['email']=$_POST['email'];
         }
