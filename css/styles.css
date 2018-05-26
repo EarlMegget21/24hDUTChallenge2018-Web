@@ -46,3 +46,13 @@ body {
     -webkit-background-size: cover;
     background-size: cover;
 }
+
+.organizer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.organizer > * {
+    margin:15px;
+}
+
