@@ -17,5 +17,7 @@ foreach ($tab_v as $v) { // Display of the beers stored in $tab_v
         . " "
         . htmlspecialchars($v->get("description"))
         . "</p></div>";
+
+
 }
 ?>

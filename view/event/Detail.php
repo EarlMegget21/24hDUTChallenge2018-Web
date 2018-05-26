@@ -2,7 +2,7 @@
 
 if(isset($_SESSION['login'])) {
     if (isset($new)) {
-        echo "<div><p>Voici l'url que vous pouvez partager à vos amis pour leur permettre d'accéder à votre évènement: " . $data['hash'] .
+        echo "<div><p>Voici l'url que vous pouvez partager à vos amis pour leur permettre d'accéder à votre évènement: <METTRE ICI LE DEBUT D'URL>" . $data['hash'] .
 
             "</p>";
     }
