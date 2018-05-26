@@ -13,4 +13,5 @@
 	</div>
 	<div class="mdc-dialog__backdrop"></div>
 </aside>
+
 <?php require File::build_path(array('view', 'main', 'Accueil.php'));?>
