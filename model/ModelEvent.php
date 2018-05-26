@@ -84,6 +84,7 @@ class ModelEvent extends Model
         $sql = "SELECT * FROM Event e";
         // Prepare the SQL statement
         $req_prep = Model::$pdo->prepare($sql);
+        $req_prep->execute();
         // Retrieve results as previously
         $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelEvent');
         $tab = $req_prep->fetchAll();

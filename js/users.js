@@ -119,6 +119,6 @@ $(function (e) {
         }
     })
     $('#createUser').on('click', function (e) {
-        changePage({'controller':'user', 'action':'create'}, "Create")
+        changePage({'controller':'user', 'action':'create'}, "User/Create")
     })
 })

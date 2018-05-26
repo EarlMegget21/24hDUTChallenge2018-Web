@@ -84,11 +84,11 @@ $(function () {
         drawer.open=false;
     })
     $('#eventPublic').on('click', function (e) {
-        changePage({'controller':'event', 'action': 'readAll'}, "Evenement/ListeEvenement")
+        changePage({'controller':'event', 'action': 'readAll'}, "Evenement/ReadAll")
         drawer.open=false;
     })
     $('#createEvent').on('click', function (e) {
-        changePage({"controller": "event", "action": "create"}, "Evenement/CreateEvenement")
+        changePage({"controller": "event", "action": "create"}, "Evenement/Create")
         drawer.open=false;
     })
 });
