@@ -9,14 +9,9 @@ class ControllerEvent { //TODO: tester chaque variable POST, GET et SESSION avan
 
     public static function readAll()
     {
-        if (Session::is_user()) {
-            $tab_v = ModelEvent::selectAll();     //appel au modèle pour gerer la BD
-            //"redirige" vers la vue (pas require_once car on peut appeler plusieur fois dans le code pour 'copier' le html à la manière d'un include en C
+            $tab_v = ModelEvent::selectAll();
             $pagetitle = 'List Evenements';
             require File::build_path(array('view', 'event', 'List.php'));
-        } else {
-            ControllerMain::error();
-        }
     }
 
     public static function read()

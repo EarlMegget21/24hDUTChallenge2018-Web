@@ -5,7 +5,7 @@
     </div>
     <form id="chercher" method="get" action="/Web/index.php">
         <input type="hidden" name="action" value="searched"/>
-        <input type="hidden" name="controller" value="biere"/>
+        <input type="hidden" name="controller" value="Event"/>
         <input type="hidden" value="0" name="montantMin" id="montantMin_id"/>
         <input type="hidden" value="100" name="montantMax" id="montantMax_id"/>
         <input id="search_input" type="text" name="marque" placeholder="Chercher une Bière">
