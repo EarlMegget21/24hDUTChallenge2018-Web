@@ -16,7 +16,7 @@ $(function (e) {
             $('#ippconfirmsignup').css('border', 'solid 1px red')
             erreur = true
         }
-
+        console.log(erreur);
         if(!erreur){
             get = $('#signupForm').attr('action').split('?')[1]
             post = ''

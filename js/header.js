@@ -88,7 +88,7 @@ $(function () {
         drawer.open=false;
     })
     $('#createEvent').on('click', function (e) {
-        changePage({"controller": "event", "action": "create"}, "Evenement/Create")
+        changePage({"controller": "event", "action": "update"}, "CreateEvenement")
         drawer.open=false;
     })
 });
