@@ -90,4 +90,3 @@ class ModelEvent extends Model
         return $tab;
     }
 }
-
