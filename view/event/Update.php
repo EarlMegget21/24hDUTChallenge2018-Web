@@ -20,12 +20,8 @@
     <label for="public">Rendre l'évènement public ?</label>
     <input type="checkbox" name="public" id="public">
 
-    <input type="hidden" name="loginCreateur" value='<?php echo htmlspecialchars($_SESSION['login']); ?>'/>
+    <input type="hidden" name="loginCreateur" value='<?php if (!empty($_SESSION['login'])) echo htmlspecialchars($_SESSION['login']); ?>'/>
 
     <input type="submit" class="submitButton" value="Créer l'évènement"/>
     <p>Les champs marqués d'une * sont obligatoires</p>
 </form>
-
-
-
-//TODO: Rajouter un champ "login" caché qui se remplit automatiquement quand un gars connecté crée un event
