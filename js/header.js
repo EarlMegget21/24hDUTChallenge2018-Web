@@ -37,11 +37,11 @@ function connected(login, admin){
     });
     if(admin) {
         $('#users').on('click', function (e) {
-            changePage({'controller':'user', 'action':'readAll'}, "ReadAll")
+            changePage({'controller':'user', 'action':'readAll'}, "User/ReadAll")
         });
     }
     $('#profil').on('click', function (e) {
-        changePage({'controller':'user', 'action':'read', 'login':currentLogin}, "Read")
+        changePage({'controller':'user', 'action':'read', 'login':currentLogin}, "User/Read")
     })
 }
 
@@ -49,17 +49,17 @@ function deconnected(){
     $('#connexion').html('<a id="login" class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1" data-mdc-tabindex-handled="true"> Connexion/Inscription </a>')
 
     $('#login').on('click', function (e) {
-        changePage({'controller':'user', 'action':'connect'}, "Connect")
+        changePage({'controller':'user', 'action':'connect'}, "User/Connect")
     })
 }
 
 $(function () {
     $('#users').on('click', function (e) {
-        changePage({'controller':'user', 'action':'readAll'}, "ReadAll")
+        changePage({'controller':'user', 'action':'readAll'}, "User/ReadAll")
         drawer.open=false;
     })
     $('#profil').on('click', function (e) {
-        changePage({'controller':'user', 'action':'read', 'login':currentLogin}, "Read")
+        changePage({'controller':'user', 'action':'read', 'login':currentLogin}, "User/Read")
         drawer.open=false;
     })
     $('#logout').on('click', function (e) {
@@ -68,7 +68,7 @@ $(function () {
         deconnected()
     })
     $('#login').on('click', function (e) {
-        changePage({'controller':'user', 'action':'connect'}, "Connect")
+        changePage({'controller':'user', 'action':'connect'}, "User/Connect")
         drawer.open=false;
     })
     $('#accueilMenu').on('click', function (e) {
@@ -84,11 +84,11 @@ $(function () {
         drawer.open=false;
     })
     $('#eventPublic').on('click', function (e) {
-        changePage({'controller':'event', 'action': 'readAll'}, "ListeEvenement")
+        changePage({'controller':'event', 'action': 'readAll'}, "Evenement/ListeEvenement")
         drawer.open=false;
     })
     $('#createEvent').on('click', function (e) {
-        changePage({"controller": "event", "action": "create"}, "CreateEvenement")
+        changePage({"controller": "event", "action": "create"}, "Evenement/CreateEvenement")
         drawer.open=false;
     })
 });
