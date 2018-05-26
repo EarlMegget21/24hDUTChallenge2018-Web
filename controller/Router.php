@@ -1,6 +1,7 @@
 <?php
 
 require_once File::build_path(array('controller','ControllerUser.php'));
+require_once File::build_path(array('controller','ControllerParticipant.php'));
 
 if(array_key_exists("page", $_GET)){ //routes prises par un lien/URL la première fois qu'on atterit sur le site
     if(array_key_exists("action", $_GET)) {
