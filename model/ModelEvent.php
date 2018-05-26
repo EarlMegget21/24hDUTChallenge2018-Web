@@ -36,15 +36,42 @@ class ModelEvent extends Model
     }
 
     public static function search($data){
-        $sql = "SELECT * FROM Evenement e WHERE e.id:=id";
-        // Prepare the SQL statement
-        $req_prep = Model::$pdo->prepare($sql);
-        // Execute the SQL prepared statement after replacing tags
-        $req_prep->execute($data); //on associe le tableau à la requete pour éviter l'injection
-        // Retrieve results as previously
-        $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelEvent');
-        $tab = $req_prep->fetchAll();
-        return $tab;
+        $sql = "SELECT * FROM Event e WHERE";
+        if(isset($data["id"])) {
+            $sql = $sql . "e.id=:id";
+        }
+        if(isset($data["titre"])){
+            $sql=$sql."e.titre LIKE CONCAT('%',:titre,'%')  AND ";
+        }
+        if(isset($data["date"])){
+            $sql=$sql."e.date=:date AND ";
+        }
+        if(isset($data["time"])){
+            $sql = $sql . "e.date LIKE CONCAT('%',:time,'%') AND "; //permet de vérifier si la chaîne rentrée est comprise dans la chaîne totale de la bdd (% = nimporte quelle chaîne de char)
+        }
+        if(isset($data["description"])) {
+            $sql = $sql . "e.description LIKE CONCAT('%',:description,'%') AND ";
+        }
+        $sql = $sql."bi.montant > :montantMin AND montant < :montantMax";
+        //echo $sql;    //DEBUG
+        try {
+            // Prepare the SQL statement
+            $req_prep = Model::$pdo->prepare($sql);
+
+            // Execute the SQL prepared statement after replacing tags
+            $req_prep->execute($data); //on associe le tableau à la requete pour éviter l'injection
+
+            // Retrieve results as previously
+            $req_prep->setFetchMode(PDO::FETCH_CLASS, 'ModelEvent');
+            $tab = $req_prep->fetchAll();
+            if (empty($tab)) {
+                return false;
+            }
+            return $tab; //on retourne un tableau car pour les tables à plusieurs clés primaire, si on en met qu'une dans le WHERE, ça peut renvoyer plusieurs tuples
+        } catch(PDOException $e){
+            echo $e->getMessage(); // affiche un message d'erreur
+            die(); //supprimer equilvalent à System.exit(1); en java
+        }
     }
 
     public static function save($data)  #Va d'abord chercher l'id max dans la BD puis l'incrémente et en fait un hash
@@ -55,7 +82,7 @@ class ModelEvent extends Model
 
     public static function selectAll()
     {
-        $sql = "SELECT * FROM Evenement e";
+        $sql = "SELECT * FROM Event e";
         // Prepare the SQL statement
         $req_prep = Model::$pdo->prepare($sql);
         // Execute the SQL prepared statement after replacing tags
