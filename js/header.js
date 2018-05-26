@@ -29,10 +29,7 @@ function connected(login, admin){
     html+='<a id="profil" class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1" data-mdc-tabindex-handled="true"> <i class="material-icons mdc-list-item__graphic" aria-hidden="true">account_circle</i>Mon profil</a>';
     html+='<a id="logout" class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1" data-mdc-tabindex-handled="true"> <i class="material-icons mdc-list-item__graphic" aria-hidden="true">power_off</i>Deconnexion</a>';
     $('#connexion').html(
-        html+
-        '<a id="profil" href="#">Mon Profil</a>'+
-        '<a id="logout" href="#">Deconnexion</a>'+
-        '</div>'
+        html
     );
     $('#logout').on('click', function (e) {
         changePage({'controller':'user', 'action':'deconnect'}, "Accueil")
