@@ -1,6 +1,6 @@
 <div class="organizer">
     <div class="carte" style="    width: 100%;">
-        <form class="mdc-card" id="logincard" method="post">
+        <form class="mdc-card form" id="loginForm" method="post" action="?controller=user&action=connected">
             <h2 class="card-h2 card-padding mdc-typography--title">Connexion</h2>
             <div class="mdc-text-field" id="identifiant">
                 <input autocomplete="off" type="text" id="login_id" name="login" class="mdc-text-field__input">
@@ -12,7 +12,7 @@
                 <label class="mdc-floating-label" for="mdpConnect">Password</label>
                 <div class="mdc-line-ripple"></div>
             </div>
-            <button class="mdc-fab material-icons">
+            <button type="submit" class="mdc-fab material-icons">
                 <span class="mdc-fab__icon">
                     send
                 </span>
@@ -35,11 +35,11 @@
 
     <script src="/Web/js/users.js" async defer></script>
     <script>
-        const buttonRipple = new mdc.ripple.MDCRipple(document.querySelector('#logbutton'));
+        buttonRipple = new mdc.ripple.MDCRipple(document.querySelector('#logbutton'));
     </script>
     <script>
-        const textField = new mdc.textField.MDCTextField(document.querySelector('#identifiant'));
-        const textFieldPass = new mdc.textField.MDCTextField(document.querySelector('#password'));
+        textField = new mdc.textField.MDCTextField(document.querySelector('#identifiant'));
+        textFieldPass = new mdc.textField.MDCTextField(document.querySelector('#password'));
     </script>
 
     <?php
