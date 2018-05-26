@@ -1,13 +1,48 @@
-<form method="post" id="signinForm" class="form" action="/Web/index.php?action=connected&controller=user">
-    <!-- action determine le fichier dans lequel on est redirigé avec les variables rentrées après Submit -->
-    <h3>Connexion:</h3>
-    <label for="login_id">Login</label>
-    <input type="text" name="login" id="login_id" required/>
+<div class="organizer">
+    <div class="carte" style="    width: 100%;">
+        <form class="mdc-card form" id="loginForm" method="post" action="?controller=user&action=connected">
+            <h2 class="card-h2 card-padding mdc-typography--title">Connexion</h2>
+            <div class="mdc-text-field" id="identifiant">
+                <input autocomplete="off" type="text" id="login_id" name="login" class="mdc-text-field__input">
+                <label class="mdc-floating-label" for="login_id">Identifiant</label>
+                <div class="mdc-line-ripple"></div>
+            </div>
+            <div class="mdc-text-field" id="password">
+                <input autocomplete="off" type="password" id="mdpConnect" name="mdp" class="mdc-text-field__input">
+                <label class="mdc-floating-label" for="mdpConnect">Password</label>
+                <div class="mdc-line-ripple"></div>
+            </div>
+            <button type="submit" class="mdc-fab material-icons">
+                <span class="mdc-fab__icon">
+                    send
+                </span>
+            </button>
+        </form>
+    </div>
 
-    <label for="mdpConnect">Mot de passe</label>
-    <input type="password" name="mdp" id="mdpConnect" required/>
+    <style>
+        .mdc-text-field {
+            width: 90%;
+            margin: auto;
+        }
+        #logincard {
+            width: 100%;
+            max-width: 500px;
+        }
 
-    <input class="submitButton" type="submit" value="Se Connecter"/>
-</form>
+    </style>
 
-<script src="/Web/js/users.js" async defer></script>
+
+    <script src="/Web/js/users.js" async defer></script>
+    <script>
+        buttonRipple = new mdc.ripple.MDCRipple(document.querySelector('#logbutton'));
+    </script>
+    <script>
+        textField = new mdc.textField.MDCTextField(document.querySelector('#identifiant'));
+        textFieldPass = new mdc.textField.MDCTextField(document.querySelector('#password'));
+    </script>
+
+    <?php
+    require File::build_path(array('view', 'user', 'Create.php'));
+    ?>
+</div>
