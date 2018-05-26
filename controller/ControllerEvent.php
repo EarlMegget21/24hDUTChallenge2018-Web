@@ -50,14 +50,25 @@ class ControllerEvent { //TODO: tester chaque variable POST, GET et SESSION avan
             'heure'=>$_POST['heure'] + ":" + $_POST['minutes'],
             'public'=>$public,
             'loginCreateur'=>$_POST['loginCreateur']);
+        try {
+            $sql = 'SELECT MAX(id) FROM Event';
+            $req_prep = Model::$pdo->prepare($sql);
+            $req_prep->execute($data);
+            $lastId = $req_prep->fetchColumn();
+        } catch (PDOException $e) {
+            echo $e->getMessage(); // affiche un message d'erreur
+        }
+        $newId = $lastId +  1;
+        $data['id'] = $newId;
+        $data['hash'] = Security::chiffrer($newId);
         var_dump($data);
         if (!ModelEvent::save($data)) { //NULL est interprété comme non vrai aussi donc soit on return true en cas de succès soit on teste si $car1->save() === false (le === check si c'est bien un boolean et si c'est false donc si c'est NULL ça ne sera pas un boolean)
             ControllerMain::error();
         } else {
-            $tv = ModelEvent::select(array('id'=>$_POST['id']));
+            $tv = ModelEvent::select(array('hash'=>$data['hash']));
             $v=$tv[0];
-            $pagetitle='Accueil';
-            require File::build_path(array('view', 'event', 'Updated.php'));
+            $pagetitle='Evénement créé !';
+            require File::build_path(array('view', 'event', 'Detail.php'));
         }
     }
 
