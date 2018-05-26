@@ -1,31 +1,106 @@
-<form method="post" id="createEventForm" class="form" action="/Web/index.php?action=updated&controller=event"> <!-- action determine le fichier dans lequel on est redirigé avec les variables rentrées après Submit -->
-    <h3>Créer un évènement</h3>
+<div style="display: flex">
+    <form method="post" id="createEventForm" class="mdc-card carte form"
+          action="/Web/index.php?action=updated&controller=event">
+        <!-- action determine le fichier dans lequel on est redirigé avec les variables rentrées après Submit -->
+        <h2 class="card-h2 card-padding mdc-typography--title">Créer un évènement</h2>
 
-    <label for="localisation">Localisation *</label>
-    <input type='text' name='localisation' id='localisation' required/>
+        <div class="mdc-text-field" id="divLocalisation">
+            <label class="mdc-floating-label" for="localisation">Localisation *</label>
+            <input class="mdc-text-field__input" type='text' name='localisation' id='localisation' required/>
+        </div>
+        <div class="mdc-text-field" id="divTitre">
+            <label class="mdc-floating-label" for="titre">Titre *</label>
+            <input class="mdc-text-field__input" type="text" name="titre" id="titre" required/>
+        </div>
+        <div class="mdc-text-field" id="divDescription">
+            <label class="mdc-floating-label" for="description">Description</label>
+            <input class="mdc-text-field__input" type="text" name="description" id="description"/>
+        </div>
+        <div class="mdc-text-field" id="divDate">
+            <label class="mdc-floating-label" for="date">Date *</label>
+            <input class="mdc-text-field__input" type="date" name="date" id="date" required/>
+        </div>
+        <div class="mdc-text-field" id="divHeure">
+            <label class="mdc-floating-label" for="heure">Heure *</label>
+            <input class="mdc-text-field__input" type="number" name="heure" min="0" max="23" value="00">
+            <input class="mdc-text-field__input" type="number" name="minutes" min="0" max="59" value="00">
+        </div>
+        <div class="mdc-form-field">
+            <div class="mdc-checkbox" id="divPublic">
+                <input type="checkbox" name="public" id="public"
+                       class="mdc-checkbox__native-control">
+                <div class="mdc-checkbox__background">
+                    <svg class="mdc-checkbox__checkmark"
+                         viewBox="0 0 24 24">
+                        <path class="mdc-checkbox__checkmark-path"
+                              fill="none"
+                              stroke="white"
+                              d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+                    </svg>
+                    <div class="mdc-checkbox__mixedmark"></div>
+                </div>
+            </div>
+            <label for="public">Rendre l'évènement public ?</label>
+        </div>
+        <input type="hidden" name="loginCreateur" value='<?php echo htmlspecialchars($_SESSION['login']); ?>'/>
 
-    <label for="titre">Titre *</label>
-    <input type="text" name="titre" id="titre" required/>
+        <button type="submit" class="mdc-fab material-icons">
+                <span class="mdc-fab__icon">
+                    send
+                </span>
+        </button>
+        <p>Les champs marqués d'une * sont obligatoires</p>
+    </form>
 
-    <label for="description">Description</label>
-    <input type="text" name="description" id="description"/>
+    <div class="mdc-card carte">
+        <div id="map" style="height: 300px"></div>
+    </div>
+</div>
+<script>
+    function initMap() {
+        var uluru = {lat: -25.363, lng: 131.044};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 4,
+            center: uluru
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+    }
 
-    <label for="date">Date *</label>
-    <input type="date" name="date" id="date" required/>
+    initMap();
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGBKtqJK8cs_TU3g-KpEjKj84MrR1u4VA&callback=initMap">
+</script>
+<!-- <script src="/Dataviz/script/sliderScript.js"> //script pour le slider </script> -->
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuog5LlTmtUH8-wB5IjxdJMY_Cq-CqhVU&language=fr&callback=initMap">
+</script> <!-- include l'API Javascript grâce à notre Clé, async pour asynchrone donc la map sera chargée(InitMap() terminée) puis le code reprendra son court != en même temps -->
 
-    <label for="heure">Heure *</label>
-    <input type="number" name="heure" min="0" max="23" value="00">
-    <input type="number" name="minutes" min="0" max="59" value="00">
+<script>
+    divLocation = new mdc.textField.MDCTextField(document.querySelector('#divLocalisation'));
+    divTitre = new mdc.textField.MDCTextField(document.querySelector('#divTitre'));
+    divDescription = new mdc.textField.MDCTextField(document.querySelector('#divDescription'));
+    divDate = new mdc.textField.MDCTextField(document.querySelector('#divDate'));
+    divHeure = new mdc.textField.MDCTextField(document.querySelector('#divHeure'));
+    divPublic = new mdc.checkbox.MDCCheckbox(document.querySelector('#divPublic'));
+</script>
 
-    <label for="public">Rendre l'évènement public ?</label>
-    <input type="checkbox" name="public" id="public">
+<style>
+    .mdc-text-field {
+        width: 90%;
+        margin: auto;
+    }
 
-    <input type="hidden" name="loginCreateur" value='<?php echo htmlspecialchars($_SESSION['login']); ?>'/>
+    .form p {
+        padding: 15px;
+    }
 
-    <input type="submit" class="submitButton" value="Créer l'évènement"/>
-    <p>Les champs marqués d'une * sont obligatoires</p>
-</form>
-
-
-
-//TODO: Rajouter un champ "login" caché qui se remplit automatiquement quand un gars connecté crée un event
+    button.mdc-fab.material-icons {
+        margin: auto;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+</style>

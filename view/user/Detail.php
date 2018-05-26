@@ -10,7 +10,7 @@
         </div>
         <div class="mdc-list-item" tabindex="-1" data-mdc-tabindex="-1"
              data-mdc-tabindex-handled="true">
-            Nom : <?php echo htmlspecialchars($v->get("email")) ?>
+            E-mail : <?php echo htmlspecialchars($v->get("email")) ?>
         </div>
         <?php
         if (Session::is_user($_GET['login']) || Session::is_admin()) {
