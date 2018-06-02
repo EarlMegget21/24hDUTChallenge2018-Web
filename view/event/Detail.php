@@ -1,6 +1,4 @@
 <?php
-
-if(isset($_SESSION['login'])) {
     if (isset($new)) {
         echo "<div><p>Voici l'url que vous pouvez partager à vos amis pour leur permettre d'accéder à votre évènement: <METTRE ICI LE DEBUT D'URL>" . $data['hash'] .
 
@@ -15,6 +13,9 @@ if(isset($_SESSION['login'])) {
         . " "
         . htmlspecialchars($v->get("description"))
         . "</p></div>";
-}else{
-    echo "Erreur 404";
-}
+    if(Session::is_user($v->get('login'))){
+        echo "<div>Liste des Participants:</div><div>";
+        ControllerParticipant::readById($v->get('login'));
+    }
+?>
+<script src="/Web/js/event.js" async defer></script>

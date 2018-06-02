@@ -13,6 +13,13 @@ class ControllerParticipant {
         $pagetitle = 'List';
         require File::build_path(array('view', 'participant', 'List.php'));
     }
+
+    public static function readById($login)
+    {
+        $tab_v = ModelParticipant::select(array('login'=>$login));
+        $pagetitle = 'List Evenements';
+        require File::build_path(array('view', 'participation', 'List.php'));
+    }
     
     public static function read() {
         if(isset($_GET['nom']) && isset($_GET['idEvent'])){
@@ -67,7 +74,7 @@ class ControllerParticipant {
             $tv=ModelParticipant::select(array('nom'=>$_GET['nom'], 'idEvent'=>$_GET['idEvent']));
             $v=$tv[0];
             $pagetitle='Update';
-            require File::build_path(array('view', 'participant', 'Update.php'));
+            require File::build_path(array('view', 'participant', 'Create.php'));
         }else{
             ControllerMain::error();
         }
@@ -91,7 +98,7 @@ class ControllerParticipant {
                 $tv = ModelParticipant::select(array('nom'=>$_POST['nom'], 'idEvent'=>$_POST['idEvent']));
                 $v=$tv[0];
                 $pagetitle='Accueil';
-                require File::build_path(array('view', 'participant', 'Updated.php'));
+                require File::build_path(array('view', 'participant', 'Created.php'));
             }
         } else {
             ControllerMain::error();

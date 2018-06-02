@@ -13,6 +13,6 @@
 
 <script>
     $('#creerEvent').click(function(e) {
-        changePage({'controller':"event","action":"update"},"CreateEvenement")
+        changePage({'controller':"event","action":"create"},"Event/Create")
     })
 </script>

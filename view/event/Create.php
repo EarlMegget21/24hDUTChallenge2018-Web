@@ -1,10 +1,14 @@
 <div style="display: flex">
     <form method="post" id="createEventForm" class="mdc-card carte form"
-          action="/Web/index.php?action=updated&controller=event">
+          action="/Web/index.php?action=created&controller=event">
         <!-- action determine le fichier dans lequel on est redirigé avec les variables rentrées après Submit -->
         <h2 class="card-h2 card-padding mdc-typography--title">Créer un évènement</h2>
-
-        <div class="mdc-text-field" id="divLocalisation">
+	
+		<input type="hidden" name="longitude" id="longitude_id" required/>
+	
+		<input type="hidden" name="latitude" id="latitude_id" required/>
+	
+		<div class="mdc-text-field" id="divLocalisation">
             <label class="mdc-floating-label" for="localisation">Localisation *</label>
             <input class="mdc-text-field__input" type='text' name='localisation' id='localisation' required/>
         </div>
@@ -17,7 +21,7 @@
             <input class="mdc-text-field__input" type="text" name="description" id="description"/>
         </div>
         <div class="mdc-text-field" id="divDate">
-            <label class="mdc-floating-label" for="date">Date *</label>
+            <label class="mdc-floating-label mdc-floating-label--float-above" for="date">Date *</label>
             <input class="mdc-text-field__input" type="date" name="date" id="date" required/>
         </div>
         <div class="mdc-text-field" id="divHeure">
@@ -57,28 +61,58 @@
         <div id="map" style="height: 300px"></div>
     </div>
 </div>
+<script src="/Web/js/event.js" async defer></script>
 <script>
-    function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 4,
-            center: uluru
-        });
-        var marker = new google.maps.Marker({
-            position: uluru,
-            map: map
-        });
-    }
+	var marker;
+	
+	function initMap() {
+		var map = new google.maps.Map(document.getElementById('map'), {
+			zoom: 2,
+			minZoom: 1,
+			maxZoom: 11,
+			center: {lat: 0 , lng: 0},
+			streetViewControl: false, //désactive l'HUD inutile
+			mapTypeControl: false,
+			rotateControl: false,
+			fullscreenControl: false
+		});
+		
+		map.addListener('click', function(e) {
+			placeMarkerAndPanTo(e.latLng, map);
+		});
+		
+		if(document.getElementById("update")) { //Place un marqueur aux coordonnées de l'event à update
+			var latitude = document.getElementById("latitude_id").value;
+			var longitude = document.getElementById("longitude_id").value;
+			
+			var LatLng = new google.maps.LatLng(latitude, longitude)
+			
+			marker = new google.maps.Marker({
+				position: LatLng,
+				map: map
+			});
+			map.panTo(LatLng);
+		}
+	}
+	
+	function placeMarkerAndPanTo(latLng, map) {
+		if(typeof marker !== 'undefined'){  //Détruit le précédent marqueur si on en avait placé un
+			marker.setMap(null);
+		}
+		marker = new google.maps.Marker({
+			position: latLng,
+			map: map
+		});
+		document.getElementById("latitude_id").value = marker.getPosition().lat();
+		document.getElementById("longitude_id").value = marker.getPosition().lng();
+		map.panTo(latLng);
+	}
 
-    initMap();
 </script>
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGBKtqJK8cs_TU3g-KpEjKj84MrR1u4VA&callback=initMap">
-</script>
-<!-- <script src="/Dataviz/script/sliderScript.js"> //script pour le slider </script> -->
+
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCuog5LlTmtUH8-wB5IjxdJMY_Cq-CqhVU&language=fr&callback=initMap">
-</script> <!-- include l'API Javascript grâce à notre Clé, async pour asynchrone donc la map sera chargée(InitMap() terminée) puis le code reprendra son court != en même temps -->
+</script>
 
 <script>
     divLocation = new mdc.textField.MDCTextField(document.querySelector('#divLocalisation'));
@@ -98,7 +132,6 @@
     .form p {
         padding: 15px;
     }
-    
 
     button.mdc-fab.material-icons {
         margin: auto;

@@ -76,7 +76,7 @@ class ControllerUser { //TODO: tester chaque variable POST, GET et SESSION avant
             $tv=ModelUser::select(array('login'=>$_GET['login']));
             $v=$tv[0];
             $pagetitle='Update';
-            require File::build_path(array('view', 'user', 'Update.php'));
+            require File::build_path(array('view', 'user', 'Create.php'));
         }else{
             ControllerMain::error();
         }
@@ -106,7 +106,7 @@ class ControllerUser { //TODO: tester chaque variable POST, GET et SESSION avant
                 $tv = ModelUser::select(array('login'=>$_POST['login']));
                 $v=$tv[0];
                 $pagetitle='Accueil';
-                require File::build_path(array('view', 'user', 'Updated.php'));
+                require File::build_path(array('view', 'user', 'Created.php'));
             }
         } else {
             ControllerMain::error();

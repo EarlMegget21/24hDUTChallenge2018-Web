@@ -1,0 +1,33 @@
+#dans le httpd.conf il y a un allow from all qui ouvre le serveur apache à l'exterieur, attention
+#on ne peut pas mettre de commentaire sur la même ligne
+
+#bloque le listage des répertoires via navigateur
+#définit une page par défault
+Options -Indexes
+#DirectoryIndex /Web/index.php
+#bloque l'accès aux fichiers ayant cette extension (TODO: peut être deny tout et autoriser uniquement index.php)
+<Files ~ "\.(css|gif|jpg|jpeg|png|ico)$">
+	Order Deny,Allow
+	Deny from all
+</Files>
+#définit les pages à appeler en cas d'erreur (403 redirigé vers 404 pour tromper le hacker)
+ErrorDocument 403 /Error
+ErrorDocument 404 /Error
+
+#Order deny,allow
+#Allow from all 
+# interdit à tout le monde sauf
+# TODO: autoriser seulement aux IP de l'équipe durant le concours
+#Allow from 123.45.6.7
+#Allow from 13.37
+# Toutes les adresses IP commençant par 13.37
+
+
+#on est obligé de mette les reecritures ici si on veut les utiliser dans la suite du htaccess
+RewriteEngine On
+RewriteRule    ^(Accueil|Error|Propos|Faq)/?$    Web/index.php?page=main&action=$1    [NC,L]
+RewriteRule    ^(User|Event|Participant)/(Create|ReadAll)/?$    Web/index.php?page=$1&action=$2    [NC,L]
+RewriteRule    ^User/(Connect)/?$    Web/index.php?page=user&action=$1    [NC,L]
+RewriteRule    ^User/(Read|Update|Delete)/([A-Za-z0-9_-]+)/?$    Web/index.php?page=user&action=$1&login=$2    [NC,L]
+RewriteRule    ^Participant/(Read|Update|Delete)/([A-Za-z0-9_-]+)/([0-9]+)/?$    Web/index.php?page=participant&action=$1&nom=$2&idEvent=$3    [NC,L]
+RewriteRule    ^Event/(Read)/([A-Za-z0-9_-]+)/?$    Web/index.php?page=event&action=$1&id=$2    [NC,L]

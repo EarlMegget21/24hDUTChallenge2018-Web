@@ -16,7 +16,6 @@ $(function (e) {
             $('#ippconfirmsignup').css('border', 'solid 1px red')
             erreur = true
         }
-        console.log(erreur);
         if(!erreur){
             get = $('#signupForm').attr('action').split('?')[1]
             post = ''
@@ -26,7 +25,6 @@ $(function (e) {
                 } else if (value.getAttribute('type') != 'checkbox' && value.getAttribute('name') != null) {
                     post += value.getAttribute('name') + "=" + $('#signupForm [name="' + value.getAttribute('name') + '"]').val() + "&"
                 }
-                console.log(value.getAttribute('name')+":"+$('#signupForm [name="' + value.getAttribute('name') + '"]').val())
             })
             $.ajax({
                 url: "http://localhost/Web/index.php?" + get,

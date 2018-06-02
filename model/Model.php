@@ -128,7 +128,6 @@ class Model {
             $req_prep->execute($data);
             return true; //si on return pas true, la valeur retournée sera NULL
         } catch(PDOException $e){
-            var_dump( $e->getMessage()); // affiche un message d'erreur
             return false;
         }
     }

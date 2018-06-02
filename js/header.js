@@ -7,7 +7,6 @@ function changePage(queries, title){
             url+="/" + value.charAt(0).toUpperCase() + value.slice(1)
 
     });
-    console.log()
     $.ajax({
         url: "http://localhost/Web/index.php?"+get,
         beforeSend: function(){
@@ -34,15 +33,26 @@ function connected(login, admin){
     $('#logout').on('click', function (e) {
         changePage({'controller':'user', 'action':'deconnect'}, "Accueil")
         deconnected()
+		drawer.open=false;
     });
     if(admin) {
         $('#users').on('click', function (e) {
             changePage({'controller':'user', 'action':'readAll'}, "User/ReadAll")
+			drawer.open=false;
         });
     }
     $('#profil').on('click', function (e) {
         changePage({'controller':'user', 'action':'read', 'login':currentLogin}, "User/Read")
+		drawer.open=false;
     })
+	$('nav #icon-with-text-demo').append(
+	    '<a id="createEvent"class="mdc-list-item demo-drawer-list-item" tabindex="-1" data-mdc-tabindex="-1" data-mdc-tabindex-handled="true">'+
+		'<i class="material-icons mdc-list-item__graphic" aria-hidden="true">add</i>Créer un evenement</a>'
+    );
+	$('#createEvent').on('click', function (e) {
+		changePage({"controller": "event", "action": "create"}, "Event/Create")
+		drawer.open=false;
+	})
 }
 
 function deconnected(){
@@ -50,7 +60,9 @@ function deconnected(){
 
     $('#login').on('click', function (e) {
         changePage({'controller':'user', 'action':'connect'}, "User/Connect")
+		drawer.open=false;
     })
+	$('#createEvent').remove()
 }
 
 $(function () {
@@ -84,11 +96,11 @@ $(function () {
         drawer.open=false;
     })
     $('#eventPublic').on('click', function (e) {
-        changePage({'controller':'event', 'action': 'readAll'}, "Evenement/ReadAll")
+        changePage({'controller':'event', 'action': 'readAll'}, "Event/ReadAll")
         drawer.open=false;
     })
-    $('#createEvent').on('click', function (e) {
-        changePage({"controller": "event", "action": "update"}, "CreateEvenement")
-        drawer.open=false;
-    })
+	$('#createEvent').on('click', function (e) {
+		changePage({"controller": "event", "action": "create"}, "Event/Create")
+		drawer.open=false;
+	})
 });

@@ -43,7 +43,7 @@
     if (Session::is_admin()) {
         echo "<div class='mdc-checkbox' id='checkadmin'><label for='admin_id'>Administrateur </label>
            <input type='checkbox' name='isAdmin' id='admin_id'class='mdc-checkbox__native-control'/></div>";
-        //TODO: reCaptcha+verif form, URL Rewrite+liens, accessibilité serveur, HeaderFooter mobile, Design inspi, vérif pour éviter erreurs SQL, retours d'erreur plus précis
+        //TODO: reCaptcha+verif form, vérif pour éviter erreurs SQL, retours d'erreur plus précis
     }
     ?>
     <button type="submit" class="mdc-fab material-icons">

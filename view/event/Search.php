@@ -23,3 +23,5 @@ foreach ($tab_v as $v) {
         . htmlspecialchars($v->get("description"))
         . "</p></a></div>";
 }
+?>
+<script src="/Web/js/event.js" async defer></script>
